@@ -3,9 +3,10 @@ import { useState } from "react";
 import { UserAuth } from "@/utils/useAuth";
 import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Link from "next/link";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const { signUp } = UserAuth();
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       await signUp({ email, password });
-      router.push("/signin");
+      router.push("/");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -75,6 +76,14 @@ const SignUp = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const SignUp = () => {
+  return (
+    <ProtectedRoute>
+      <SignUpPage />
+    </ProtectedRoute>
   );
 };
 

@@ -3,10 +3,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import supabase from "./supabase";
 
-// Create the AuthContext
 const AuthContext = createContext();
 
-// Create the AuthProvider component to wrap your app with the context
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -41,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   const signUp = async ({ email, password }) => {
     const { user, error } = await supabase.auth.signUp({ email, password });
     if (error) throw error;
-    setUser(null);
+    router.push("/");
   };
 
   const signOut = async () => {

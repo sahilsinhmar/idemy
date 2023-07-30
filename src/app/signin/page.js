@@ -3,9 +3,10 @@ import { useRouter } from "next/navigation";
 import { UserAuth } from "@/utils/useAuth";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Link from "next/link";
 
-const SignIn = () => {
+const SignInPage = () => {
   const router = useRouter();
   const { signIn } = UserAuth();
   const [email, setEmail] = useState("");
@@ -77,6 +78,14 @@ const SignIn = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const SignIn = () => {
+  return (
+    <ProtectedRoute>
+      <SignInPage />
+    </ProtectedRoute>
   );
 };
 
