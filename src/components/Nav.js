@@ -76,7 +76,7 @@ const Nav = () => {
               Sign in
             </Link>
             <Link href="/signup" className="black_btn">
-              Sign Un
+              Sign Up
             </Link>
           </div>
         )}
